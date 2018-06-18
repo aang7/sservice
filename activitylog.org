@@ -1,0 +1,95 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:t
+#+OPTIONS: d:(not "LOGBOOK") date:nil e:t email:t f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:nil tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+#+TITLE: Registro de Actividades
+#+DATE: <2018-06-11 Mon>
+#+AUTHOR: Abel Güitian
+#+EMAIL: aang.drummer@gmail.com
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 25.3.2 (Org mode 9.1.3)
+#+SETUPFILE: theme-readtheorg.setup
+
+* Introducción
+
+Este documento es creado con la finalidad de registrar las actividades que estaré realizando
+dentro del lapso de tiempo de mi servicio social, en la facultad de ingeniería mecánica y eléctrica, en la Universidad Autónoma de Nuevo León.
+Se tienen que cumplir con un tiempo determinado, esto más específicamente hablando es hacer un total de 80 horas mensuales, lo que equivale 
+a un total de 4 horas por día de lunes a viernes.
+
+El formato o manera de construir este archivo es el siguiente:
+- Dentro del apartado de /Actividades/ habrán sub-apartados o sub-títulos que tendrán comúnmente la fecha en la que se realizó la actividad con
+  formato /<Año-mes-día indicio del día>/ (Por ejemplo: <2018-03-19 Mon> /Esto es lunes marzo 19 del 2018/).
+- También los subtítulos podrían presentarse a manera de múltiples fechas o sesiones, ya que podría estar trabajando en un mismo tema en específico.
+- Este archivo cuenta con un :LOGBOOK: dónde se buscará plasmar el tiempo invertido en cada sesión de trabajo.
+- También se incluye un apartado de /footnotes/, en ella se encuentran referencias a conceptos, que yo en lo particular no sabía o no tengo claro
+  o sólo por el simple hecho de llevar retroalimentación en la documentación.
+
+:LOGBOOK:
+CLOCK: [2018-06-16 Sat 14:34]--[2018-06-16 Sat 21:25] =>  6:51
+Se actualizara la interacción para informar de como estaré llevando a cabo el registro de actividades.
+:END:
+
+
+* Actividades
+
+** <2018-06-11 Mon>
+Debido a mi semana de exámenes y problemas de salud, empecé el servicio social prácticamente una semana después.
+Por lo que este día me puse de acuerdo con la /Dra. Elisa Schaeffer/ acerca de lo que voy a realizar en el servicio social.
+Me comento ciertas opciones acerca de los temas en los que podría estar trabajando. Al final tenía que elegir solamente una opción.
+El tema que escogí tiene que ver con la epidemiología[fn:1], más concretamente en la predicción de epidemias usando herramientas como la 
+probabilidad y estadística, matemáticas discretas, inteligencia artificial y otras más.
+
+De igual manera creé un repositorio en [[https://sourceforge.net/][sourcefourge.net]] donde almacenaré los avances obtenidos y el registro de actividades que tú estás leyendo en este momento.
+
+** <2018-06-12 Tue>
+
+Para poder llevar a cabo este documento tuve que investigar un poco acerca de /[[https://orgmode.org/][org-mode]]/. Org mode es un _modo_ o _paquete_ en /emacs/ que ayuda en el mantenimiento
+de notas, /To-Do lists/, planificación de proyectos, etc. He realizado pequeñas documentaciones con esta herramienta que considero muy flexible, aunque
+un poco difícil de aprender en mi opinión. La documentación se realiza en texto plano con el formato de org-mode, pero org-mode tiene la opción 
+de exportar el texto a otro formato, por ejemplo, un pdf, html, etc. Estos son algunos de los enlaces/tutoriales que me sirvieron para tener la oportunidad
+de usar emacs para la realización de esta documentación.
+
+- [[https://www.youtube.com/watch?v=iYkuzV3Pu68&t=304s][Emacs for note-taking / outlining]]
+- [[https://www.youtube.com/watch?v=SzA2YODtgK4][Getting Started With Org Mode]]
+- [[https://www.youtube.com/watch?v=dljNabciEGg&t=1427s][Literate Devops with Emacs]]
+
+
+** <2018-06-13 Wed>
+Empezando a refrescar y adquirir conocimientos de probabilidad y estadística. El [[https://www.amazon.com/Probability-Statistics-Engineering-Sciences-Devore/dp/0538733527][libro]] que estoy utilizando:
+#+BEGIN_VERSE
+Probability and Statistics for Engineering and the Sciences (Eighth Edition)
+-Jay Devore
+#+END_VERSE
+
+Las anotaciones, se pueden ver en el apartado de [[#pye:one][Anotaciones]].
+
+* Anotaciones
+
+Dentro de este apartado, se plasma información que decido anotar, para dar seguimiento a la investigación y aprendizaje que estoy realizando.
+Es demasiada la información que puedo leer en un par de días por lo que creo que, es importante que haga mis anotaciones y no sólo
+que registre lo que he estado haciendo de manera general, pero si de manera un poco más específica.
+
+** Devore -  Probabilidad y Estadística 
+
+*** Capítulo 1
+:PROPERTIES:
+:CUSTOM_ID: pye:one
+:END:
+
+*Población*: Una investigación típicamente se enfocara en una colección de objetos bien definida, constituyendo una población de interés. \\
+*Muestra*: Subconjunto de una población.
+
+Dentro de una población usualmente estamos interesados sólo en ciertas características, por ejemplo, la edad de una persona, el género de un graduado
+en ingeniería, etc.
+
+Una _variable_ es cualquier característica que su valor puede cambiar de un objeto a otro dentro de la población. Una _característica_ puede ser categórica o numérica.
+El género (femenino o masculino) es una variable categórica.
+
+
+* Footnotes
+
+[fn:1] Parte de la medicina que estudia el desarrollo epidémico y la incidencia de las enfermedades infecciosas en la población.

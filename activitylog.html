@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-06-18 Mon 15:29 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Registro de Actividades</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Abel Güitian" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Registro de Actividades</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org73e0cef">1. Introducción</a></li>
+<li><a href="#org6e26cbd">2. Actividades</a>
+<ul>
+<li><a href="#org607fd84">2.1. <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-06-11 Mon&gt;</span></span></a></li>
+<li><a href="#orge36c107">2.2. <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-06-12 Tue&gt;</span></span></a></li>
+<li><a href="#orgdb4bb6d">2.3. <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-06-13 Wed&gt;</span></span></a></li>
+</ul>
+</li>
+<li><a href="#org133b7a6">3. Anotaciones</a>
+<ul>
+<li><a href="#org17bc9d8">3.1. Devore -  Probabilidad y Estadística</a>
+<ul>
+<li><a href="#pye:one">3.1.1. Capítulo 1</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org73e0cef" class="outline-2">
+<h2 id="org73e0cef"><span class="section-number-2">1</span> Introducción</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Este documento es creado con la finalidad de registrar las actividades que estaré realizando
+dentro del lapso de tiempo de mi servicio social, en la facultad de ingeniería mecánica y eléctrica, en la Universidad Autónoma de Nuevo León.
+Se tienen que cumplir con un tiempo determinado, esto más específicamente hablando es hacer un total de 80 horas mensuales, lo que equivale 
+a un total de 4 horas por día de lunes a viernes.
+</p>
+
+<p>
+El formato o manera de construir este archivo es el siguiente:
+</p>
+<ul class="org-ul">
+<li>Dentro del apartado de <i>Actividades</i> habrán sub-apartados o sub-títulos que tendrán comúnmente la fecha en la que se realizó la actividad con
+formato <i>&lt;Año-mes-día indicio del día&gt;</i> (Por ejemplo: <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-03-19 Mon&gt; </span></span> <i>Esto es lunes marzo 19 del 2018</i>).</li>
+<li>También los subtítulos podrían presentarse a manera de múltiples fechas o sesiones, ya que podría estar trabajando en un mismo tema en específico.</li>
+<li>Este archivo cuenta con un :LOGBOOK: dónde se buscará plasmar el tiempo invertido en cada sesión de trabajo.</li>
+<li>También se incluye un apartado de <i>footnotes</i>, en ella se encuentran referencias a conceptos, que yo en lo particular no sabía o no tengo claro
+o sólo por el simple hecho de llevar retroalimentación en la documentación.</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org6e26cbd" class="outline-2">
+<h2 id="org6e26cbd"><span class="section-number-2">2</span> Actividades</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org607fd84" class="outline-3">
+<h3 id="org607fd84"><span class="section-number-3">2.1</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-06-11 Mon&gt;</span></span></h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Debido a mi semana de exámenes y problemas de salud, empecé el servicio social prácticamente una semana después.
+Por lo que este día me puse de acuerdo con la <i>Dra. Elisa Schaeffer</i> acerca de lo que voy a realizar en el servicio social.
+Me comento ciertas opciones acerca de los temas en los que podría estar trabajando. Al final tenía que elegir solamente una opción.
+El tema que escogí tiene que ver con la epidemiología<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, más concretamente en la predicción de epidemias usando herramientas como la 
+probabilidad y estadística, matemáticas discretas, inteligencia artificial y otras más.
+</p>
+
+<p>
+De igual manera creé un repositorio en <a href="https://sourceforge.net/">sourcefourge.net</a> donde almacenaré los avances obtenidos y el registro de actividades que tú estás leyendo en este momento.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge36c107" class="outline-3">
+<h3 id="orge36c107"><span class="section-number-3">2.2</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-06-12 Tue&gt;</span></span></h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Para poder llevar a cabo este documento tuve que investigar un poco acerca de <i><a href="https://orgmode.org/">org-mode</a></i>. Org mode es un <span class="underline">modo</span> o <span class="underline">paquete</span> en <i>emacs</i> que ayuda en el mantenimiento
+de notas, <i>To-Do lists</i>, planificación de proyectos, etc. He realizado pequeñas documentaciones con esta herramienta que considero muy flexible, aunque
+un poco difícil de aprender en mi opinión. La documentación se realiza en texto plano con el formato de org-mode, pero org-mode tiene la opción 
+de exportar el texto a otro formato, por ejemplo, un pdf, html, etc. Estos son algunos de los enlaces/tutoriales que me sirvieron para tener la oportunidad
+de usar emacs para la realización de esta documentación.
+</p>
+
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=iYkuzV3Pu68&amp;t=304s">Emacs for note-taking / outlining</a></li>
+<li><a href="https://www.youtube.com/watch?v=SzA2YODtgK4">Getting Started With Org Mode</a></li>
+<li><a href="https://www.youtube.com/watch?v=dljNabciEGg&amp;t=1427s">Literate Devops with Emacs</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgdb4bb6d" class="outline-3">
+<h3 id="orgdb4bb6d"><span class="section-number-3">2.3</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-06-13 Wed&gt;</span></span></h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Empezando a refrescar y adquirir conocimientos de probabilidad y estadística. El <a href="https://www.amazon.com/Probability-Statistics-Engineering-Sciences-Devore/dp/0538733527">libro</a> que estoy utilizando:
+</p>
+<p class="verse">
+Probability and Statistics for Engineering and the Sciences (Eighth Edition)<br />
+-Jay Devore<br />
+</p>
+
+<p>
+Las anotaciones, se pueden ver en el apartado de <a href="#pye:one">Anotaciones</a>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org133b7a6" class="outline-2">
+<h2 id="org133b7a6"><span class="section-number-2">3</span> Anotaciones</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Dentro de este apartado, se plasma información que decido anotar, para dar seguimiento a la investigación y aprendizaje que estoy realizando.
+Es demasiada la información que puedo leer en un par de días por lo que creo que, es importante que haga mis anotaciones y no sólo
+que registre lo que he estado haciendo de manera general, pero si de manera un poco más específica.
+</p>
+</div>
+
+<div id="outline-container-org17bc9d8" class="outline-3">
+<h3 id="org17bc9d8"><span class="section-number-3">3.1</span> Devore -  Probabilidad y Estadística</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org2c67a20" class="outline-4">
+<h4 id="pye:one"><a id="org2c67a20"></a><span class="section-number-4">3.1.1</span> Capítulo 1</h4>
+<div class="outline-text-4" id="text-pye:one">
+<p>
+<b>Población</b>: Una investigación típicamente se enfocara en una colección de objetos bien definida, constituyendo una población de interés. <br />
+<b>Muestra</b>: Subconjunto de una población.
+</p>
+
+<p>
+Dentro de una población usualmente estamos interesados sólo en ciertas características, por ejemplo, la edad de una persona, el género de un graduado
+en ingeniería, etc.
+</p>
+
+<p>
+Una <span class="underline">variable</span> es cualquier característica que su valor puede cambiar de un objeto a otro dentro de la población. Una <span class="underline">característica</span> puede ser categórica o numérica.
+El género (femenino o masculino) es una variable categórica.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Parte de la medicina que estudia el desarrollo epidémico y la incidencia de las enfermedades infecciosas en la población.
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Abel Güitian</p>
+<p class="email">Email: <a href="mailto:aang.drummer@gmail.com">aang.drummer@gmail.com</a></p>
+<p class="date">Created: 2018-06-18 Mon 15:29</p>
+<p class="creator">Emacs 25.3.2 (Org mode 9.1.3)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
