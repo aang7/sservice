@@ -1,0 +1,12 @@
+* Clean aspects to consider
+
+- Quitar comas si es que son el ultimo caracter en la línea [IMPORTANT: TODO]
+- Quitar líneas que contengan regex como: entidad, federativa, CIE, etc.
+- Identificar las líneas que contengan los años e.g. 2015, 2016, etc.
+  - Esto es super importante por que asi puedo determinar que va con que
+
+Necesito hacer un script de pre limpieza de ruido que cubre palabras como:
+entidad, federativa, CIE.
+
+Al parecer el script no hace su jale como debe.
+
