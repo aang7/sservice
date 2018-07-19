@@ -1,0 +1,37 @@
+
+
+: '
+  args: $1 -> text to be splitted
+  	$2 -> delimeter char
+	$3 -> array or variable to be used (be filled)
+'
+function SplitLineByDelimeter() {
+
+    local -n text=$1
+    local -n delim=$2
+    local -n array=$3
+    
+    IFS="$delim" read -ra array <<< "$text" # var name it's important
+
+}
+
+: '
+  expect to be called as:
+  GetNumericalValues array_to_be_modified
+  The given array will be cleared and will contain only numerical values.
+  Given array will be cleared regardless if it have numerical values or not.
+'
+function GetNumericalValues() {
+
+    local -n array=$1; # get value as reference
+    copyarray=( "${array[@]}");
+    ITEMS=( "${copyarray[@]}" )
+    array=()
+
+    for i in ${ITEMS[@]}; do
+    	if [[ $i =~ ^-?[0-9]+$ ]]; then # if it's a numeric value
+    	    array=(${array[@]} $i) # save it
+    	fi
+    done
+
+}

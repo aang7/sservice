@@ -5,8 +5,47 @@
 - Identificar las líneas que contengan los años e.g. 2015, 2016, etc.
   - Esto es super importante por que asi puedo determinar que va con que
 
-Necesito hacer un script de pre limpieza de ruido que cubre palabras como:
-entidad, federativa, CIE.
+- Note taken on [2018-07-17 Tue 10:10] \\
+  Al parecer el script no hace su jale como debe.
 
-Al parecer el script no hace su jale como debe.
 
+
+#+NAME: Using functions by reference: sample
+#+BEGIN_SRC bash
+
+  # The first arg has to be the array and the second the element to add 
+  function addToArray() {
+      local -n a1=$1
+      a1=(${a1[@]} $2) # save it
+  }
+
+  miarray=()
+  addToArray miarray "Hola"
+  echo ${miarray[@]}
+
+
+
+
+# this may help i just need to process every file
+sed -i 's/,[[:blank:]]*$//g' *.csv > tmp.tmp # https://unix.stackexchange.com/questions/220576/how-to-remove-last-comma-of-each-line-on-csv-using-linux
+
+#+END_SRC
+
+
+Estuve tratando de separar algunas funciones que creo podrían servir despues 
+
+#+BEGIN_SRC bash
+
+#command="/${years[0]},/ || /${years[1]}/ {print FNR}" # in general each csv has only two different years
+
+  . ./utils.lib
+  a="2015,esto,es,107,prueba"
+  b=','
+  marray=();
+  SplitLineByDelimeter a b ga;
+  echo "${ga[@]}"
+  GetNumericalValues ga
+  echo "${ga[@]}"
+
+
+#+END_SRC

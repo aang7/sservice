@@ -1,54 +1,58 @@
 #!/bin/bash
-cd newProgram/
-awk 'FNR==1 {print FILENAME, $0}' *.csv  > names.txt
-emacsclient names.txt
+. ./utils.lib
 
-# this may help i just need to process every file
-sed -i 's/,[[:blank:]]*$//g' *.csv > tmp.tmp # https://unix.stackexchange.com/questions/220576/how-to-remove-last-comma-of-each-line-on-csv-using-linux
+FILE_EXTENSION=".csv"
+DIR="newProgram/*"
 
-IN1=2015,2014,2015,2014,2015,2014,Sem.,Acum.,Acum.,Sem.,Acum.,Acum.,Sem.,Acum.,Acum.
 
-IFS=',' read -ra ADDR <<< "$IN1"
+:'
+  This function tries to clean the year header of the csv files.
+  args: $1 -> Directory
+  	$2 -> FileExtension
+'
+function cleanYearHeader() {
+    echo "$# Parameters"
+    DIRECTORY=$1
+    F_EXTENSION=$2
+    echo "FEXTENSION: ${#F_EXTENSION}"
+    pattern="/2015/ || /2014/ {print FNR}" # in general each csv has only two different years
+     #read the files of directory
+     for file in $DIRECTORY;
+     do
+	 
+	 if [[ ${file: -${#F_EXTENSION}} == $F_EXTENSION && $(wc -l < $file) -ge 32 ]];
+	 then
+	     lineNumber=$(echo $(awk "$pattern" $file) | cut -d ' ' -f1)
+	     if [ -z $lineNumber ]; then
+	         filesWithoutYearHeader=( ${filesWithoutYearHeader[@]} $file) # file which doesn't have the years
+	     else
+		 yearline=$(sed "${lineNumber}q;d" $file); delimiter=',';
+		 SplitLineByDelimeter yearline delimiter splitted
+		 GetNumericalValues splitted
+		 #replace line by the splitted with the commas
+		 joinedYears=$(printf ",%s" "${splitted[@]}")
+		 sed -i "${lineNumber}s/.*/${joinedYears}/" $file
+		 printf "%s \t-> " "$file";
+		 printf "%s " "${splitted[@]}";
+		 echo ""
+	     fi
+	 else
+	     if [ ${file: -4} == ".csv" ]; then
+		 filesWithoutYearHeader=( ${filesWithoutYearHeader[@]} $file) # file which doesn't have the years
+	     fi
+	 fi
+     done
+     
 
-years=()
-for i in "${ADDR[@]}"; do
-    if [[ $i =~ ^-?[0-9]+$ ]]; then # if it's a numeric value
-	years=(${years[@]} $i) # save it
-    fi
-done
+     #check the length of the filesWithoutYearHeader
+     if [ ${#filesWithoutYearHeader} > 0 ]; then
+	 printf "\nFile(s) that doesn't meet the requirements: ${#filesWithoutYearHeader[@]}"
+	 printf '\n%s' "${filesWithoutYearHeader[@]}"
 
-echo ${years[@]} #comprobando
+     fi
 
-joinedYears=$(printf ",%s" "${years[@]}")
-echo $joinedYears
+ }
 
-#awk '/2015/ || /2014/{print}'
 
-command="/${years[0]},/ || /${years[1]}/"
-l="{print FNR}"
-final="$command$l"
-echo $final
-
-function gettingYearsLine() {
-    #reading files
-    for file in newProgram/*;
-    do
-
-	if [ ${file: -4} == ".csv" ]; then
-	    
-	    lineNumber=$(echo $(awk "$final" $file) | cut -d ' ' -f1)
-	    if [ -z $lineNumber ]; then
-		echo "empty" #file which doesn't have the years
-	    else
-		echo "$file = $(echo $lineNumber | cut -d' ' -f1)"
-	    fi
-	fi
-
-	#echo awk 'FNR==$line {print FILENAME, $0}' *.csv  > names.txt
-	#echo $file
-    done
-
-}
-
-gettingYearsLine
+cleanYearHeader "$DIR" "$FILE_EXTENSION"
 
