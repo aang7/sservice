@@ -1,3 +1,4 @@
+#!/bin/bash
 
 
 : '
@@ -34,4 +35,41 @@ function GetNumericalValues() {
     	fi
     done
 
+}
+
+
+function isValidDirectory() {
+
+   if [[ -d "$1" && -x "$1" ]]; then
+       true
+   else
+       false
+   fi
+
+   # usage: if isValidDirectory "newProgram/"; then echo "true"; else echo "false"; fi
+}
+
+
+
+
+:'
+  $1 -> file to be modified.
+  Delete commas at the end of lines and between double quotes. 
+'
+function DeleteCommas() {
+    file=$1
+    sed -i -e ':a;s/^\(\([^"]*,\?\|"[^",]*",\?\)*"[^",]*\),/\1 /;ta' -e 's/,[[:blank:]]*$//g' $file
+}
+
+
+:'
+  $1 -> content to add
+  $2 -> file
+  This function add the given line to the given file
+  if the conntent of line doesnt exist.
+'
+function AddLineToFile() {
+    content=$1
+    file=$2
+    grep -q -F "$content" $file || echo "$content" >> $file
 }

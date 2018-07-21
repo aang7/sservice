@@ -8,6 +8,12 @@
 - Note taken on [2018-07-17 Tue 10:10] \\
   Al parecer el script no hace su jale como debe.
 
+- Note taken on [2018-07-19 Thu 19:45] \\
+  Necesito eliminar las comas al final de la línea, están solas, son inútiles, también necesito eliminar comas dentro de
+  doble commillas.
+
+- Note taken on [2018-07-21 Sat 15:03] \\
+  Me tope con que no todas las tablas cumple con el patrón (numero de nombres de enfermedades*4 == cantidad de columnas de datos) [Esto sin tomar en cuenta el primer elemento]. Entonces necesito ver como puedo arreglar eso...
 
 
 #+NAME: Using functions by reference: sample
@@ -36,16 +42,52 @@ Estuve tratando de separar algunas funciones que creo podrían servir despues
 
 #+BEGIN_SRC bash
 
-#command="/${years[0]},/ || /${years[1]}/ {print FNR}" # in general each csv has only two different years
+    #command="/${years[0]},/ || /${years[1]}/ {print FNR}" # in general each csv has only two different years
 
-  . ./utils.lib
-  a="2015,esto,es,107,prueba"
-  b=','
-  marray=();
-  SplitLineByDelimeter a b ga;
-  echo "${ga[@]}"
-  GetNumericalValues ga
-  echo "${ga[@]}"
 
+      . ./utils.lib
+      a="2015,esto,es,107,prueba"
+      b=','
+      marray=();
+      SplitLineByDelimeter a b ga;
+      echo "${ga[@]}"
+      GetNumericalValues ga
+      echo "${ga[@]}"
+
+
+  :'
+    Delete commas at the end of the lines and between double quotes.
+    This function use global variables to work with
+  '
+  function DeleteCommas() {
+      FILE_EXTENSION=".csv"
+      DIR="newProgram"
+      files="$DIR/*$FILE_EXTENSION";
+      echo $files
+      for file in $files; do
+          sed -i -e':a;s/^\(\([^"]*,\?\|"[^",]*",\?\)*"[^",]*\),/\1 /;ta' -e 's/,[[:blank:]]*$//g' $file
+      done
+  }
 
 #+END_SRC
+
+
+
+* References
+
+- https://stackoverflow.com/questions/918886/how-do-i-split-a-string-on-a-delimiter-in-bash
+- https://stackoverflow.com/questions/5385234/using-sed-awk-to-print-lines-with-matching-pattern-or-another-matching-pattern
+- https://stackoverflow.com/questions/16529716/awk-save-modifications-in-place
+- https://stackoverflow.com/questions/6958841/use-grep-to-report-back-only-line-numbers
+- https://stackoverflow.com/questions/17533231/how-can-i-delete-an-element-in-an-array-and-then-shift-the-array-in-shell-script
+- https://stackoverflow.com/questions/45796762/concat-array-elements-with-comma-and-single-quote-bash
+- https://stackoverflow.com/questions/14511295/bash-integer-comparison
+- https://stackoverflow.com/questions/6022384/bash-tool-to-get-nth-line-from-a-file
+- https://stackoverflow.com/questions/7248031/meaning-of-in-shell-scripts
+- https://stackoverflow.com/questions/19417015/how-to-copy-an-array-in-bash
+- https://stackoverflow.com/questions/18568706/check-number-of-arguments-passed-to-a-bash-script
+- https://stackoverflow.com/questions/11145270/how-to-replace-an-entire-line-in-a-text-file-by-line-number/11145362
+- https://stackoverflow.com/questions/18266348/how-to-only-get-the-number-of-lines-of-a-file
+- https://stackoverflow.com/questions/25947072/how-to-check-that-a-file-has-more-than-1-line-in-a-bash-conditional
+- https://unix.stackexchange.com/questions/220576/how-to-remove-last-comma-of-each-line-on-csv-using-linux
+- https://www.shellscript.sh/functions.html
