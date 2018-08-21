@@ -4,7 +4,11 @@
 FILE_EXTENSION=".csv"
 DIR="newProgram"
 FILESOFINTEREST=() #EXP
-EPIDEMIC_NAMES_FILE="$DIR/epidemic_names.txt"
+declare -A ANOMALY_FILES
+EPIDEMIC_NAMES_FILE="$(pwd)/epidemic_names.txt"
+EPIDEMIC_EXCEPTIONS_FILE="epidemic_exceptions.txt"
+ANOMALY_FILES_FILE="anomalies.txt"
+MINCHARS_IN_EPIDEMIC_NAME=22
 
 :'
   This function tries to clean the year header of the csv files.
@@ -17,7 +21,7 @@ function cleanYearHeader() {
     echo $DIRECTORY
     F_EXTENSION=$2
     echo "FEXTENSION: ${#F_EXTENSION}"
-    pattern="/2015/ || /2014/ {print FNR}" # in general each csv has only two different years
+    pattern="/2015/ || /2014/ || /2016/ || /2013/ {print FNR}" # in general each csv has only two different years
      #read the files of directory
      for file in $DIRECTORY/*;
      do
@@ -41,7 +45,7 @@ function cleanYearHeader() {
 	     fi
 	 else
 	     if [ ${file: -4} == ".csv" ]; then
-		 filesWithoutYearHeader=( ${filesWithoutYearHeader[@]} $file) # file which doesn't have the years
+	     	 filesWithoutYearHeader=( ${filesWithoutYearHeader[@]} $file) # file which doesn't have the years
 	     fi
 	 fi
      done
@@ -54,29 +58,35 @@ function cleanYearHeader() {
 
      fi
 
- }
+}
 
+function SaveAnomalyFiles() {
+    
+    # add ANOMALY_FILES to a file
+    for value in "${ANOMALY_FILES[@]}";
+    do
+	# adding epidemic names to a file
+	AddLineToFile "$value" $ANOMALY_FILES_FILE
+    done	
+}
+
+ 
 # expects to receive an array with the files of interest
-# it uses a global variable
+# it uses a two global variables "FILESOFINTEREST" "ANOMALY_FILES"
 function GetEpidemicNames() {
 
-    #SplitLineByDelimeter
-    
     for file in "${FILESOFINTEREST[@]}"; do
 
 	DeleteCommas $file # pre process
-       	# get first line
-	firstLine=$(sed '1q;d' $file)
+
+	firstLine=$(sed '1q;d' $file) # get first line
 	b=','
-	# delete commas between double quotes
-#	firstLine=$( echo "$firstLine" | sed ':a;s/^\(\([^"]*,\?\|"[^",]*",\?\)*"[^",]*\),/\1 /;ta')
-
+	
 	SplitLineByDelimeter firstLine  b firstLine
-
+	
 	#AddLineToFile 
 	echo "size: ${#firstLine}  file: $file"
 	j=0
-
 	
         # if the number of columns on the data is equal to the number of names_headers, add lineToFile
 	dataFirstLine=$(awk "/Aguascalientes/ {print}" $file)
@@ -85,27 +95,61 @@ function GetEpidemicNames() {
 	if [ $((${#dataFirstLine[@]} - 1)) -eq $(((${#firstLine[@]} - 1) * 4)) ]; then
 	    printf ""
 	else
-	    echo "Anomaly in col headers and data numbers $file" 
+	    # if the epidemic name header contains one of the exceptions then you won't want to treat them as anomaly
+	    isexception=false
+	    for ep_pattern in "${firstLine[@]:1}"; do
+		if [ ${#ep_pattern} -ge $MINCHARS_IN_EPIDEMIC_NAME ]; then
+		    if grep -Fq "$ep_pattern" $EPIDEMIC_EXCEPTIONS_FILE ;
+		    then
+			# code if found
+			mgrep=$(grep -Fon "$ep_pattern" $EPIDEMIC_EXCEPTIONS_FILE)
+			echo "MY MGREP RESULT: $mgrep"
+			b=':'
+			SplitLineByDelimeter mgrep b ml # the idea is to check if the lenght difference of the names is not too high (TODO)
+			isexception=true
+			echo "--> $ep_pattern is exception "
+		    else
+			# code if not found
+	    		echo ";"
+		    fi
+		fi
+	    done
+
+	    if ! $isexception ; then
+		# if it's not an exception file then most probably it's an anomaly file
+		echo "TTT"
+		ANOMALY_FILES[$((k++))]=$file
+	    fi
 	fi
 	
 	for i in "${firstLine[@]:1}"; do # only matters from the 1st index to the end
-	    echo "$j : $i"
+	    echo "$j : $i : len: ${#i}"
 	    ((j++))
-	    AddLineToFile "$i" $EPIDEMIC_NAMES_FILE
-	done
-	echo ""; echo "";
+	    if [ ${#i} -ge $MINCHARS_IN_EPIDEMIC_NAME ]; then # if the name is greater than22 chars add it to the file
 
-     	
+		name_chars=$(echo "$i" | sed 's/\CIE.*//' | sed 's/[^0-9a-zA-Z ]*//g')
+		# adding epidemic names to a file
+		if ! grep -Fq "$name_chars" $EPIDEMIC_NAMES_FILE ; then
+		    AddLineToFile "$i" $EPIDEMIC_NAMES_FILE
+		fi
+	    fi
+	done
+	echo ""; echo ""; 
+	     	
     done
+
+    if [ ${#ANOMALY_FILES} > 0 ]; 
+    then
+	echo "Anomaly Files";
+	Printaarr ANOMALY_FILES
+	SaveAnomalyFiles
+    fi
     
 }
+
 
 
 cleanYearHeader "$DIR" "$FILE_EXTENSION"
 echo ""; echo "Files of interest";
 GetEpidemicNames
 
-
-# echo '"ENTIDAD FEDERATIVA","§Tétanos Neonatal CIE-10a REV. A33","§Tétanos CIE-10a REV. A34, A35", '|
-#   sed ':a;s/^\(\([^"]*,\?\|"[^",]*",\?\)*"[^",]*\),/\1 /;ta'
-#tengo que checar si realmente hace match con la cantidad de datos, por lo general por cada titulo o nombre de enfermedad hay 4 columnas en los datos s, ac h, ac m, acum(pastYear)

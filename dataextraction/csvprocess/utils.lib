@@ -20,7 +20,7 @@ function SplitLineByDelimeter() {
   expect to be called as:
   GetNumericalValues array_to_be_modified
   The given array will be cleared and will contain only numerical values.
-  Given array will be cleared regardless if it have numerical values or not.
+  Given array will be cleared regardless if it has numerical values or not.
 '
 function GetNumericalValues() {
 
@@ -66,10 +66,22 @@ function DeleteCommas() {
   $1 -> content to add
   $2 -> file
   This function add the given line to the given file
-  if the conntent of line doesnt exist.
+  if the conntent of line doesnt exist. If the name of the file does not exists
+  the file will be created.
 '
 function AddLineToFile() {
     content=$1
     file=$2
+    
+    if [ ! -f $file ]; then
+	touch $file  
+    fi
+
     grep -q -F "$content" $file || echo "$content" >> $file
+}
+
+:'print an associative array
+  $1 -> associative array to print '
+function Printaarr() {
+    declare -n __p="$1"; for k in "${!__p[@]}"; do printf "%s=%s\n" "$k" "${__p[$k]}" ; done ;
 }
