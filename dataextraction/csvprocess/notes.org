@@ -15,6 +15,46 @@
 - Note taken on [2018-07-21 Sat 15:03] \\
   Me tope con que no todas las tablas cumple con el patrón (numero de nombres de enfermedades*4 == cantidad de columnas de datos) [Esto sin tomar en cuenta el primer elemento]. Entonces necesito ver como puedo arreglar eso...
 
+- Note taken on [2018-08-21 Tue 15:28] \\
+  Ahora puedo realmente filtrar los archivos en los que algo anda mal, Les llamo _Anomaly Files_.
+
+- Note taken on [2018-09-02 Sun 21:06] \\
+  Tengo algunos TODO and WARNINGS comments en myscript.sh.
+  Detalles que pueden ser relevantes. Al día van 3. #INVERSION: Desde las 7 hasta las 10
+
+- Note taken on [2018-09-09 Sun 23:35] \\
+  Inversion desde las 8 hasta las 12.
+  Comitie mi avance. Ya hice el ejemplo de extracción de datos de cierta enfermedad, faltan detalles. Pero me estoy acercando.
+Lo que se me ocurre para generar los archivos csv por enfermedades, es ir buscando por nombre.
+Esto podría solucionarse con un grep recursivo.
+Escribire los pasos que se me ocurren podría hacer para solucionar este problema.
+
+
+Lo que haré será crear un ejemplo de la funcionalidad que quiero, me refiero al siguiente
+algoritmo:
+#+BEGIN_CENTER
+- Hacer grep recursivo dando solamente como patrón el nombre de la enfermedad.
+- Recorrer los archivos en los que se encontró.
+- Identificar la columna en la que esta y extraer sus datos.
+- Es necesario tener la semana a la que pertenece y por supuesto el año(Que podemos tomarlos desde el nombre del file)
+#+END_CENTER
+
+#+NAME: Caracteristicas
+Creare archivos por enfermedad por año, con el siguiente formato:
+
+Año
+Semp.ep,1,,,2,,,3
+E.F, SemCASOS, H Ac., M Ac.,  
+Agu
+BCN
+
+Primero lo que haré será un ejemplo de extracción de datos de cierta enfermedad.
+Para ello usare el siguiente algoritmo:
+#+BEGIN_CENTER
+- Ubicar la columna de la enfermedad (DONE)
+- obtener las lineas de interes(las de los datos)
+- 
+#+END_CENTER
 
 #+NAME: Using functions by reference: sample
 #+BEGIN_SRC bash
@@ -91,3 +131,4 @@ Estuve tratando de separar algunas funciones que creo podrían servir despues
 - https://stackoverflow.com/questions/25947072/how-to-check-that-a-file-has-more-than-1-line-in-a-bash-conditional
 - https://unix.stackexchange.com/questions/220576/how-to-remove-last-comma-of-each-line-on-csv-using-linux
 - https://www.shellscript.sh/functions.html
+  
