@@ -25,6 +25,12 @@
 - Note taken on [2018-09-09 Sun 23:35] \\
   Inversion desde las 8 hasta las 12.
   Comitie mi avance. Ya hice el ejemplo de extracción de datos de cierta enfermedad, faltan detalles. Pero me estoy acercando.
+
+- Note taken on [2018-09-10 Mon 21:21] \\
+  Inversion desde las 4 hasta las 9.
+  Ya avance algo del newConverter.py. Me di cuenta que hay enfermedades que se detecta mal el nombre, y entonces se agregan a mi listado de epidemic_names.txt. Lo que haré será recortar el numero de palabras y ver si así empata.
+
+
 Lo que se me ocurre para generar los archivos csv por enfermedades, es ir buscando por nombre.
 Esto podría solucionarse con un grep recursivo.
 Escribire los pasos que se me ocurren podría hacer para solucionar este problema.

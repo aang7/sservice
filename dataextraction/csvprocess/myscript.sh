@@ -2,7 +2,7 @@
 . ./utils.lib
 
 FILE_EXTENSION=".csv"
-DIR="newProgram"
+DIR="GeneratedCSV"
 FILESOFINTEREST=() #EXP
 declare -A ANOMALY_FILES
 EPIDEMIC_NAMES_FILE="$(pwd)/epidemic_names.txt"
@@ -244,7 +244,8 @@ function getDataOfEpidemic() {
 
 
 
-# cleanYearHeader "$DIR" "$FILE_EXTENSION"
+#cleanYearHeader "$DIR" "$FILE_EXTENSION"
 # echo ""; echo "Files of interest";
-# GetEpidemicNames
+#GetEpidemicNames
+
 getDataOfEpidemic

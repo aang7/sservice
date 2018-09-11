@@ -1,0 +1,12 @@
+newProgram/20.csv
+newProgram/57.csv
+GeneratedCSV/2016_sem22_24.csv
+GeneratedCSV/2016_sem22_31.csv
+GeneratedCSV/2016_sem22_61.csv
+GeneratedCSV/2016_sem42_35.csv
+GeneratedCSV/2016_sem42_58.csv
+GeneratedCSV/2016_sem42_65.csv
+GeneratedCSV/2016_sem44_31.csv
+GeneratedCSV/2016_sem46_35.csv
+GeneratedCSV/2016_sem46_58.csv
+GeneratedCSV/2016_sem46_65.csv
